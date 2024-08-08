@@ -22,6 +22,7 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async redirect({ url, baseUrl }) {
+      console.log("redirect", url, baseUrl);
       // Allows relative callback URLs
       if (url.startsWith("/")) return `${baseUrl}${url}`;
       // Allows callback URLs on the same origin
@@ -29,10 +30,12 @@ export const authOptions: NextAuthOptions = {
       return baseUrl;
     },
     signIn(params) {
+      console.log("signIn", params);
       return true;
     },
 
     session({ session, token, user }) {
+      console.log("session", session, token, user);
       return {
         ...session,
         user: {

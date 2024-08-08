@@ -11,20 +11,20 @@ export default function Home() {
     <div className="w-full flex flex-col gap-8">
       <section className="bg-yellow-100 w-full p-2 rounded flex justify-center items-center text-xl">
         <p>
-          <strong>{count}</strong> multiplayer cursor{count != 1 ? "s" : ""} 🎈
+          <strong>{count}</strong> people here{count != 1 ? "s" : ""} 🎈
         </p>
       </section>
 
       <section className="flex flex-col gap-2">
-        <h1 className="text-4xl font-medium pb-6">PartyKit Starter Kit</h1>
-        <p>What you’ll find here...</p>
+        <h1 className="text-4xl font-medium pb-6">Welcome to Blank Space</h1>
+        <p>Ever thought about...</p>
         <ul className="list-disc list-inside">
-          <li>Multiplayer chatrooms</li>
-          <li>AI chatbots</li>
-          <li>Sample client and party code for all of the above</li>
+          <li>Keeping a journal and writing to the world?</li>
+          <li>Finding people who vibe with you?</li>
+          <li>A place to get started writing? </li>
         </ul>
         <p>
-          Check <code>README.md</code> for how to run this locally in 3 steps.
+          Our mission is to <code>Connect</code> through long-form text.
         </p>
       </section>
 

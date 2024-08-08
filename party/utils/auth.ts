@@ -43,3 +43,8 @@ export const getNextAuthSession = async (proxiedRequest: Party.Request) => {
 
   return null;
 };
+// clicking "sign in"
+// http://localhost:3001/api/auth/signin?callbackUrl=http://localhost:3001/chat/yummy-abundant-insect
+
+// NextAuth
+// have to set the callback to /api/auth/callback/github

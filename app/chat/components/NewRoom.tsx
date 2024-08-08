@@ -13,6 +13,9 @@ export default function NewRoom(props: { slug: string }) {
     await fetch(`${PARTYKIT_URL}/parties/chatroom/${slug}`, {
       method: "POST",
     });
+    await fetch(`${PARTYKIT_URL}/parties/editor/${slug}`, {
+      method: "POST",
+    });
     router.push(`/chat/${slug}`);
   };
 

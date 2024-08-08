@@ -9,7 +9,7 @@
     "cursors": "party/cursors.ts",
     "basic": "party/basic.ts",
     "rooms": "party/rooms.ts",
-    "server": "party/server.ts"
+    "editor": "party/editor.ts"
   },
   "serve": {
     "path": "party/public"

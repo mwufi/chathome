@@ -6,10 +6,16 @@ import { Room } from "./Room";
 import PresenceBar from "./components/PresenceBar";
 import ClearRoomButton from "./components/ClearRoomButton";
 import { PARTYKIT_HOST, PARTYKIT_URL } from "@/app/env";
+import Editor from "./Editor";
 
 const party = "chatroom";
 
 export const revalidate = 0;
+
+function getRandomColor() {
+  const colors = ["red", "orange", "yellow", "green", "blue", "purple", "pink"];
+  return colors[Math.floor(Math.random() * colors.length)];
+}
 
 export default async function ChatRoomPage({
   params,
@@ -48,6 +54,12 @@ export default async function ChatRoomPage({
             user={user}
             room={params.roomId}
             messages={room.messages ?? []}
+          />
+          <Editor
+            host={PARTYKIT_HOST}
+            party={'editor'}
+            userColor={getRandomColor()}
+            room={params.roomId}
           />
         </>
       ) : (

@@ -26,7 +26,7 @@ export default function NewRoom(props: { slug: string }) {
           type="submit"
           className="bg-stone-200 hover:bg-stone-300 px-2 py-1 rounded whitespace-nowrap"
         >
-          let's go! -&gt;
+          let&apos;s go! -&gt;
         </button>
       </form>
     </div>

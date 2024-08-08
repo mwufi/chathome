@@ -26,7 +26,7 @@ export async function getChatCompletionResponse(
   });
 
   const openaiResponse = await openai.createChatCompletion({
-    model: "gpt-3.5-turbo",
+    model: "gpt-4o-mini",
     stream: true,
     messages: prompt,
   });

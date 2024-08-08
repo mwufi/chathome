@@ -29,7 +29,7 @@ export default async function ChatRoomPage({
     <div className="w-full flex flex-col gap-4 justify-between items-start">
       <div className="flex flex-wrap justify-start items-center gap-x-4 gap-y-2">
         <Link href="/chat" className="text-stone-400 whitespace-nowrap">
-          &lt;- All Rooms
+          &lt;- All Docs
         </Link>
         <ClearRoomButton roomId={params.roomId} />
       </div>

@@ -1,10 +1,12 @@
 'use client'
 
+import "react-quill/dist/quill.snow.css";
+
 import { useState, useRef, useEffect } from "react";
 import ReactQuill, { Quill } from "react-quill";
 import { QuillBinding } from "y-quill";
+
 import useYProvider from "y-partykit/react";
-import "react-quill/dist/quill.snow.css";
 import styles from "./Editor.module.css";
 import QuillCursors from "quill-cursors";
 
@@ -48,12 +50,9 @@ export default function Editor({
 
     return (
         <div className={styles.editor}>
-            <h1>
-                Editor <code>Room #{room}</code>
-            </h1>
             <ReactQuill
                 ref={quill}
-                theme="snow"
+                theme="bubble"
                 className={styles.quill}
                 value={text}
                 onChange={setText}

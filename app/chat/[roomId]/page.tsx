@@ -7,6 +7,7 @@ import PresenceBar from "./components/PresenceBar";
 import ClearRoomButton from "./components/ClearRoomButton";
 import { PARTYKIT_HOST, PARTYKIT_URL } from "@/app/env";
 import Editor from "./Editor";
+import CollapsibleChat from "./CollapsibleChat";
 
 const party = "chatroom";
 
@@ -37,30 +38,31 @@ export default async function ChatRoomPage({
         <Link href="/chat" className="text-stone-400 whitespace-nowrap">
           &lt;- All Docs
         </Link>
-        <ClearRoomButton roomId={params.roomId} />
       </div>
       {room ? (
         <>
-          <div className="w-full flex flex-row justify-between items-start pb-6">
-            <div>
-              <h1 className="text-4xl font-medium">{params.roomId}</h1>
-            </div>
-            <PresenceBar roomId={params.roomId} />
+          <div className="w-full shadow rounded-xl max-w-prose mx-auto text-lg font-serif">
+            <Editor
+              host={PARTYKIT_HOST}
+              party={'editor'}
+              userColor={getRandomColor()}
+              room={params.roomId}
+            />
           </div>
 
-          <Room
-            host={PARTYKIT_HOST}
-            party={party}
-            user={user}
-            room={params.roomId}
-            messages={room.messages ?? []}
-          />
-          <Editor
-            host={PARTYKIT_HOST}
-            party={'editor'}
-            userColor={getRandomColor()}
-            room={params.roomId}
-          />
+          <CollapsibleChat>
+            <div className="w-full flex flex-row justify-between items-start pb-6">
+              <PresenceBar roomId={params.roomId} />
+            </div>
+            <Room
+              host={PARTYKIT_HOST}
+              party={party}
+              user={user}
+              room={params.roomId}
+              messages={room.messages ?? []}
+            />
+          </CollapsibleChat>
+
         </>
       ) : (
         <h1 className="text-4xl font-medium">Room not found</h1>

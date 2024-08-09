@@ -31,7 +31,7 @@ type ChatConnection = Party.Connection<ChatConnectionState>;
 export default class ChatRoomServer implements Party.Server {
   messages?: Message[];
   botId?: string;
-  constructor(public party: Party.Party) {}
+  constructor(public party: Party.Party) { }
 
   /** Retrieve messages from room storage and store them on room instance */
   async ensureLoadMessages() {
@@ -189,7 +189,13 @@ export default class ChatRoomServer implements Party.Server {
     messageString: string,
     connection: Party.Connection<{ user: User | null }>
   ) {
-    const message = JSON.parse(messageString) as UserMessage;
+    let message;
+    try {
+      message = JSON.parse(messageString) as UserMessage;
+    } catch (e) {
+      console.log(messageString, "is not a JSON!")
+      return;
+    }
     // handle user messages
     if (message.type === "new" || message.type === "edit") {
       const user = connection.state?.user;
@@ -232,6 +238,7 @@ export default class ChatRoomServer implements Party.Server {
         new Date().getTime() + DELETE_MESSAGES_AFTER_INACTIVITY_PERIOD
       );
     }
+
   }
 
   async onClose(connection: Party.Connection) {

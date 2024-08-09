@@ -8,6 +8,7 @@ import PartySocket from "partysocket";
 import Link from "next/link";
 import RoomMessage from "./components/RoomMessage";
 import ConnectionStatus from "@/app/components/ConnectionStatus";
+import ClearRoomButton from "./components/ClearRoomButton";
 
 const identify = async (socket: PartySocket) => {
   // the ./auth route will authenticate the connection to the partykit room
@@ -89,19 +90,22 @@ export const Room: React.FC<{
   return (
     <>
       <div className="h-full w-full flex flex-col gap-6">
-        {messages.length > 0 ? (
-          <ul className="flex flex-col gap-3">
-            {messages.map((message) => (
-              <RoomMessage
-                key={message.id}
-                message={message}
-                isMe={message.from.id === user?.username}
-              />
-            ))}
-          </ul>
-        ) : (
-          <p className="italic">No messages yet</p>
-        )}
+        <ClearRoomButton roomId={room} />
+        <div className="max-h-[400px] overflow-auto">
+          {messages.length > 0 ? (
+            <ul className="flex flex-col gap-3">
+              {messages.map((message) => (
+                <RoomMessage
+                  key={message.id}
+                  message={message}
+                  isMe={message.from.id === user?.username}
+                />
+              ))}
+            </ul>
+          ) : (
+            <p className="italic">No messages yet</p>
+          )}
+        </div>
         {session.status === "authenticated" ? (
           <form onSubmit={handleSubmit} className="sticky bottom-4 sm:bottom-6">
             <input

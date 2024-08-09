@@ -23,14 +23,17 @@ export default function PresenceBar(props: { roomId: string }) {
   if (!room) return;
 
   return (
-    <div className="flex flex-reverse row -space-x-2">
-      {room.users.map((user) => (
-        <Avatar
-          key={user.username}
-          username={user.username}
-          image={user.image ?? null}
-        />
-      ))}
+    <div className="flex gap-2 items-center">
+      <div className="flex flex-reverse row -space-x-2">
+        users:
+        {room.users.map((user) => (
+          <Avatar
+            key={user.username}
+            username={user.username}
+            image={user.image ?? null}
+          />
+        ))}
+      </div>
     </div>
   );
 }

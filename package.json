@@ -28,12 +28,15 @@
     "partykit": "^0.0.32",
     "partysocket": "^0.0.12",
     "postcss": "8.4.31",
+    "quill-cursors": "^4.0.3",
     "random-word-slugs": "^0.1.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-quill": "^2.0.0",
     "tailwindcss": "3.3.3",
     "typescript": "5.2.2",
-    "y-partykit": "^0.0.9"
+    "y-partykit": "^0.0.9",
+    "y-quill": "^1.0.0"
   },
   "devDependencies": {
     "concurrently": "^8.2.1"

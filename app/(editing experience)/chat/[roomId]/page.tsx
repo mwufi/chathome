@@ -41,7 +41,7 @@ export default async function ChatRoomPage({
       </div>
       {room ? (
         <>
-          <div className="w-full shadow rounded-xl max-w-prose mx-auto text-lg font-serif">
+          <div className="w-full shadow rounded-xl max-w-[70ch] mx-auto text-lg font-serif bg-white p-6">
             <Editor
               host={PARTYKIT_HOST}
               party={'editor'}

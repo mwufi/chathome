@@ -54,6 +54,7 @@ export default function Editor({
                 ref={quill}
                 theme="bubble"
                 className={styles.quill}
+                placeholder="Compose an epic..."
                 value={text}
                 onChange={setText}
                 modules={{ cursors: true }}

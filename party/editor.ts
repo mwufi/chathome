@@ -1,11 +1,24 @@
 import type * as Party from "partykit/server";
 import { onConnect, type YPartyKitOptions } from "y-partykit";
 import type { Doc } from "yjs";
-import { notFound, ok } from "./utils/response";
+import { json, notFound, ok } from "./utils/response";
+import { syncTitle } from "./utils/message";
 
 export default class EditorServer implements Party.Server {
   yjsOptions: YPartyKitOptions = {};
-  constructor(public party: Party.Party) { }
+  title: string | undefined;
+
+  constructor(public party: Party.Party) {
+  }
+
+  /** Retrieve messages from room storage and store them on room instance */
+  async loadTitle() {
+    if (!this.title) {
+      this.title =
+        (await this.party.storage.get<string>("title")) ?? "title";
+    }
+    return this.title;
+  }
 
   getOpts() {
     // options must match when calling unstable_getYDoc and onConnect
@@ -19,6 +32,11 @@ export default class EditorServer implements Party.Server {
    * Responds to HTTP requests to /parties/chatroom/:roomId endpoint
    */
   async onRequest(request: Party.Request) {
+    const title = await this.loadTitle()
+    if (request.method === "GET") {
+      return json(syncTitle(title))
+    }
+
     // mark room as created by storing its id in object storage
     if (request.method === "POST") {
       // respond to authentication requests proxied through the app's

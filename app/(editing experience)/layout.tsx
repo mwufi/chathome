@@ -26,7 +26,9 @@ export default function RootLayout({
             style={{ minHeight: "100dvh" }}
           >
             <Header />
-            <div className="flex-grow p-4 sm:p-6 bg-gray-50">
+            <div className="flex-grow p-4 sm:p-6" style={{
+                background: "https://t4.ftcdn.net/jpg/05/36/32/95/360_F_536329537_RblOApJIbTIPjNlROJrKKiJaFmceLJvZ.jpg"
+            }}>
               <div className="m-auto w-full flex flex-col justify-start items-start">
                 {children}
               </div>

@@ -4,10 +4,10 @@ import type { User } from "@/party/utils/auth";
 import Link from "next/link";
 import { Room } from "./Room";
 import PresenceBar from "./components/PresenceBar";
-import ClearRoomButton from "./components/ClearRoomButton";
 import { PARTYKIT_HOST, PARTYKIT_URL } from "@/app/env";
 import Editor from "./Editor";
 import CollapsibleChat from "./CollapsibleChat";
+import RoomTitle from "./RoomTitle";
 
 const party = "chatroom";
 
@@ -41,7 +41,8 @@ export default async function ChatRoomPage({
       </div>
       {room ? (
         <>
-          <div className="w-full shadow rounded-xl max-w-[70ch] mx-auto text-lg font-serif bg-white p-6">
+          <div className="w-full rounded-xl max-w-[70ch] mx-auto text-lg font-serif bg-white p-6">
+            <RoomTitle roomId={params.roomId} className="text-pink-400 mb-4" />
             <Editor
               host={PARTYKIT_HOST}
               party={'editor'}

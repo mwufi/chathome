@@ -8,3 +8,7 @@
     font-family: "Merriweather", serif;
     font-size: 1.1rem;
 }
+
+.ql-container {
+    overflow: visible !important;
+}

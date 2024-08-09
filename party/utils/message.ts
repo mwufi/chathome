@@ -27,6 +27,11 @@ export type ClearRoomMessage = {
   type: "clear";
 };
 
+export type SyncTitle = {
+  type: "sync";
+  title: string;
+};
+
 // Inbound message types
 
 export type NewMessage = {
@@ -58,6 +63,8 @@ export const editMessage = (msg: Omit<Message, "at">) =>
     at: Date.now(),
     ...msg,
   });
+
+export const syncTitle = (title: string) => JSON.stringify(<SyncTitle>{ type: "sync", title })
 
 export const syncMessage = (messages: Message[]) =>
   JSON.stringify(<SyncMessage>{ type: "sync", messages });

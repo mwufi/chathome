@@ -1,6 +1,7 @@
 'use client'
 
 import "react-quill/dist/quill.snow.css";
+import "react-quill/dist/quill.bubble.css";
 
 import { useState, useRef, useEffect } from "react";
 import ReactQuill, { Quill } from "react-quill";

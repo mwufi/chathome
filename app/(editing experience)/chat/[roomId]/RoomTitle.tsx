@@ -20,7 +20,7 @@ export default function RoomTitle({ roomId, className }: RoomTitleProps) {
         } finally {
             // do nothing!!
         }
-    }, [])
+    }, [roomId])
 
     return (
         <Title initialTitle={title} onTitleChanged={(e) => {

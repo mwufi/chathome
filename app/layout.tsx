@@ -1,27 +1,24 @@
-import "@/app/globals.css";
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { Providers } from "@/app/components/Providers";
-
-const inter = Inter({ subsets: ["latin"] });
-
-export const metadata: Metadata = {
-    title: "Eoverse",
-    description: "A place to store your thoughts",
-};
+import {
+    ClerkProvider,
+    SignInButton,
+    SignedIn,
+    SignedOut,
+    UserButton
+} from '@clerk/nextjs'
+import './globals.css'
 
 export default function RootLayout({
     children,
 }: {
-    children: React.ReactNode;
+    children: React.ReactNode
 }) {
     return (
-        <html lang="en">
-            <body className={inter.className}>
-                <Providers>
+        <ClerkProvider>
+            <html lang="en">
+                <body>
                     {children}
-                </Providers>
-            </body>
-        </html>
-    );
+                </body>
+            </html>
+        </ClerkProvider>
+    )
 }

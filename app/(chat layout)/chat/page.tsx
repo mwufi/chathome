@@ -17,8 +17,11 @@ export const revalidate = 0;
 
 export default async function RoomListPage() {
   // fetch rooms for server rendering with a GET request to the server
+  console.log("fetching rooms", partyUrl)
   const res = await fetch(partyUrl, { next: { revalidate: 0 } });
   const rooms = ((await res.json()) ?? []) as RoomInfo[];
+
+  console.log("found rooms", rooms)
 
   return (
     <div className="w-full flex flex-col gap-6">

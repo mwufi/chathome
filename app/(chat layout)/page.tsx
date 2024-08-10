@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useCursors } from "./cursors-provider";
+import { useCursors } from "./(home)/cursors-provider";
 
 export default function Home() {
   const { getCount } = useCursors();
@@ -11,7 +11,7 @@ export default function Home() {
     <div className="w-full flex flex-col gap-8">
       <section className="bg-yellow-100 w-full p-2 rounded flex justify-center items-center text-xl">
         <p>
-          <strong>{count}</strong> people here{count != 1 ? "s" : ""} 🎈
+          <strong>{count}</strong> {count != 1 ? "people" : "person"} here 🎈
         </p>
       </section>
 

@@ -1,6 +1,3 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/authOptions";
-import type { User } from "@/party/utils/auth";
 import Link from "next/link";
 import { Room } from "./Room";
 import PresenceBar from "./components/PresenceBar";
@@ -29,8 +26,8 @@ export default async function ChatRoomPage({
   const room = res.status === 404 ? null : await res.json();
 
   // fetch user session for server rendering
-  const session = await getServerSession(authOptions);
-  const user = session?.user as User | null;
+  // TODO: replace with Clerk
+  const user = null;
 
   return (
     <div className="w-full flex flex-col gap-4 justify-between items-start">

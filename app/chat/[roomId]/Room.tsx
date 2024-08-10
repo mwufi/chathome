@@ -6,9 +6,9 @@ import type { Message, ChatMessage } from "@/party/utils/message";
 import { useSession } from "next-auth/react";
 import PartySocket from "partysocket";
 import Link from "next/link";
-import RoomMessage from "./components/RoomMessage";
+import RoomMessage from "../components/RoomMessage";
 import ConnectionStatus from "@/app/components/ConnectionStatus";
-import ClearRoomButton from "./components/ClearRoomButton";
+import ClearRoomButton from "../components/ClearRoomButton";
 
 const identify = async (socket: PartySocket) => {
   // the ./auth route will authenticate the connection to the partykit room

@@ -1,7 +1,11 @@
+import CursorsProvider from "./cursors-provider";
+import Cursors from "./Cursors";
+
 import "@/app/globals.css";
 import type { Metadata } from "next";
-import Header from "@/app/components/Header";
-import Footer from "@/app/components/Footer";
+import { Inter } from "next/font/google";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 export const metadata: Metadata = {
   title: "Eoverse",
@@ -19,11 +23,12 @@ export default function RootLayout({
       style={{ minHeight: "100dvh" }}
     >
       <Header />
-      <div className="flex-grow p-4 sm:p-6" style={{
-        background: "https://t4.ftcdn.net/jpg/05/36/32/95/360_F_536329537_RblOApJIbTIPjNlROJrKKiJaFmceLJvZ.jpg"
-      }}>
-        <div className="m-auto w-full flex flex-col justify-start items-start">
-          {children}
+      <div className="flex-grow p-4 sm:p-6 bg-teal-50">
+        <div className="max-w-7xl m-auto w-full flex flex-col justify-start items-start">
+          <CursorsProvider>
+            <Cursors />
+            {children}
+          </CursorsProvider>
         </div>
       </div>
       <Footer />

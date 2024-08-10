@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { Room } from "./Room";
-import PresenceBar from "./components/PresenceBar";
+import PresenceBar from "../components/PresenceBar";
 import { PARTYKIT_HOST, PARTYKIT_URL } from "@/app/env";
 import Editor from "./Editor";
-import CollapsibleChat from "./CollapsibleChat";
-import RoomTitle from "./RoomTitle";
+import CollapsibleChat from "../components/CollapsibleChat";
+import RoomTitle from "../components/RoomTitle";
 
 const party = "chatroom";
 

@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useCursors } from "./(home)/cursors-provider";
+import { useCursors } from "./cursors-provider";
+import Header from "@/app/components/Header";
 
 export default function Home() {
   const { getCount } = useCursors();

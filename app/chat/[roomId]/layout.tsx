@@ -1,4 +1,4 @@
-import FloatingHeader from "@/app/components/FloatingHeader";
+import FloatingHeader from "@/components/FloatingHeader";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (

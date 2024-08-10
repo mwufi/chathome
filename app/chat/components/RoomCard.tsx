@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { RoomInfo } from "@/party/chatRooms";
-import Avatar from "@/app/components/Avatar";
+import Avatar from "@/components/Avatar";
 
 export default function RoomCard(props: { room: RoomInfo }) {
   const { room } = props;

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import usePartySocket from "partysocket/react";
 import { RoomInfo, SINGLETON_ROOM_ID } from "@/party/chatRooms";
-import Avatar from "@/app/components/Avatar";
+import Avatar from "@/components/Avatar";
 import { PARTYKIT_HOST } from "@/app/env";
 
 export default function PresenceBar(props: { roomId: string }) {

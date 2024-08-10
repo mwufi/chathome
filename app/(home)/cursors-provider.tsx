@@ -3,7 +3,7 @@
 import { useState, useEffect, useContext, createContext } from "react";
 import usePartySocket from "partysocket/react";
 import type { PartialCursor, CursorsMap } from "@/party/cursors";
-import ConnectionStatus from "@/app/components/ConnectionStatus";
+import ConnectionStatus from "@/components/ConnectionStatus";
 import { PARTYKIT_HOST } from "@/app/env";
 
 type CursorsContextType = {

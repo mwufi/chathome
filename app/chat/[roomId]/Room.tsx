@@ -6,7 +6,7 @@ import { useSession } from "next-auth/react";
 import PartySocket from "partysocket";
 import Link from "next/link";
 import RoomMessage from "../components/RoomMessage";
-import ConnectionStatus from "@/app/components/ConnectionStatus";
+import ConnectionStatus from "@/components/ConnectionStatus";
 import ClearRoomButton from "../components/ClearRoomButton";
 
 const identify = async (socket: PartySocket) => {

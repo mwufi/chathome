@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Message } from "@/party/utils/message";
-import Avatar from "@/app/components/Avatar";
+import Avatar from "@/components/Avatar";
 
 export default function RoomMessage(props: {
   message: Message;

@@ -3,7 +3,7 @@ import { useState } from "react";
 import usePartySocket from "partysocket/react";
 import { RoomInfo, SINGLETON_ROOM_ID } from "@/party/chatRooms";
 import RoomCard from "./components/RoomCard";
-import ConnectionStatus from "@/app/components/ConnectionStatus";
+import ConnectionStatus from "@/components/ConnectionStatus";
 import { PARTYKIT_HOST } from "@/app/env";
 
 export const RoomList: React.FC<{ initialRooms: RoomInfo[] }> = ({

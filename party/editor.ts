@@ -12,11 +12,6 @@ export default class EditorServer implements Party.Server {
 
     return onConnect(conn, this.party, {
       // experimental: persists the document to partykit's room storage
-      callback: {
-        handler: (doc) => {
-          console.log("doc", doc)
-        }
-      },
       persist: { mode: "snapshot" }
     });
   }

@@ -75,6 +75,8 @@ export default class ChatRoomServer implements Party.Server {
 
   /** Send room presence to the room listing party */
   async updateRoomList(action: "enter" | "leave", connection: ChatConnection) {
+    console.log("well, this is it!", action, connection)
+
     return this.party.context.parties.chatrooms.get(SINGLETON_ROOM_ID).fetch({
       method: "POST",
       body: JSON.stringify({
@@ -87,6 +89,9 @@ export default class ChatRoomServer implements Party.Server {
   }
 
   async authenticateUser(proxiedRequest: Party.Request) {
+    console.log("fake authenticate")
+    return;
+
     // find the connection
     const id = new URL(proxiedRequest.url).searchParams.get("_pk");
     const connection = id && this.party.getConnection(id);
@@ -128,6 +133,7 @@ export default class ChatRoomServer implements Party.Server {
       // respond to authentication requests proxied through the app's
       // rewrite rules. See next.config.js in project root.
       if (new URL(request.url).pathname.endsWith("/auth")) {
+        console.log("auth request!")
         await this.authenticateUser(request);
         return ok();
       }
@@ -198,7 +204,7 @@ export default class ChatRoomServer implements Party.Server {
     // handle user messages
     if (message.type === "new" || message.type === "edit") {
       const user = connection.state?.user;
-      if (!isSessionValid(user)) {
+      if (!user) {
         return connection.send(
           systemMessage("You must sign in to send messages to this room")
         );

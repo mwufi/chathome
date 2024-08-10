@@ -1,7 +1,6 @@
 "use client";
 import { FormEventHandler, useEffect, useState } from "react";
 import usePartySocket from "partysocket/react";
-import type { User } from "@/party/utils/auth";
 import type { Message, ChatMessage } from "@/party/utils/message";
 import { useSession } from "next-auth/react";
 import PartySocket from "partysocket";

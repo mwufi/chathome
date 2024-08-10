@@ -31,11 +31,10 @@ export default class EditorServer implements Party.Server {
           // Broadcast the updated title to all connected clients
           this.party.broadcast(JSON.stringify({ type: 'titleUpdate', title: body.title }));
         }
-      } catch (error) {
-        console.error("Error parsing JSON body:", error);
+      } finally {
+        return ok();
       }
 
-      return ok();
     }
 
     if (request.method === "GET") {

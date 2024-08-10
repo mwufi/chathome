@@ -1,6 +1,5 @@
 import type * as Party from "partykit/server";
 import { nanoid } from "nanoid";
-import { User, getNextAuthSession, isSessionValid } from "./utils/auth";
 import { SINGLETON_ROOM_ID } from "./chatRooms";
 import type {
   Message,

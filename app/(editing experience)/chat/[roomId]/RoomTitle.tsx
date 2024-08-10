@@ -1,30 +1,114 @@
 'use client'
 
-import { useEffect, useState } from "react"
+import React, { useState, useEffect } from 'react';
 import { PARTYKIT_URL } from "@/app/env";
-import Title from "./Title";
 
-interface RoomTitleProps { roomId: string, className: string }
+interface RoomTitleProps {
+    roomId: string;
+    className?: string;
+}
 
-export default function RoomTitle({ roomId, className }: RoomTitleProps) {
-    const [title, setTitle] = useState('something something')
+const RoomTitle: React.FC<RoomTitleProps> = ({ roomId, className }) => {
+    const [title, setTitle] = useState<string | null>(null);
+    const [isEditing, setIsEditing] = useState(false);
+
     useEffect(() => {
-        async function foo() {
-            const url = `${PARTYKIT_URL}/parties/editor/${roomId}`;
-            const { title } = await fetch(url).then(x => x.json());
-            console.log("title", title)
-            setTitle(title)
+        async function fetchTitle() {
+            try {
+                const url = `${PARTYKIT_URL}/parties/editor/${roomId}`;
+                const response = await fetch(url);
+                const data = await response.json();
+                setTitle(data.title);
+            } catch (error) {
+                console.error("Error fetching title:", error);
+            }
         }
-        try {
-            void foo()
-        } finally {
-            // do nothing!!
+        fetchTitle();
+    }, [roomId]);
+
+    const handleTitleChange = (newTitle: string) => {
+        setTitle(newTitle);
+        console.log(newTitle);
+        // Send the updated title to the server
+        const updateTitle = async () => {
+            try {
+                const url = `${PARTYKIT_URL}/parties/editor/${roomId}`;
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ title: newTitle }),
+                });
+                if (!response.ok) {
+                    throw new Error('Failed to update title');
+                }
+            } catch (error) {
+                console.error("Error updating title:", error);
+            }
+        };
+        updateTitle();
+    };
+
+    const handleClick = () => {
+        setIsEditing(true);
+    };
+
+    const handleBlur = () => {
+        setIsEditing(false);
+        if (title !== null) {
+            handleTitleChange(title);
         }
-    }, [roomId])
+    };
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setTitle(e.target.value);
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            handleBlur();
+        }
+    };
+
+    const sharedStyles = {
+        fontSize: '2rem',
+        fontWeight: 'bold',
+        width: '100%',
+    };
+
+    if (title === null) {
+        return null; // or a loading indicator
+    }
 
     return (
-        <Title initialTitle={title} onTitleChanged={(e) => {
-            console.log(e)
-        }} className={className} />
-    )
-}
+        <>
+            {isEditing ? (
+                <input
+                    type="text"
+                    value={title}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    onKeyDown={handleKeyDown}
+                    autoFocus
+                    className={className}
+                    style={{
+                        ...sharedStyles,
+                        border: 'none',
+                        background: 'transparent',
+                    }}
+                />
+            ) : (
+                <h1
+                    onClick={handleClick}
+                    className={className}
+                    style={{ ...sharedStyles, cursor: 'pointer' }}
+                >
+                    {title}
+                </h1>
+            )}
+        </>
+    );
+};
+
+export default RoomTitle;

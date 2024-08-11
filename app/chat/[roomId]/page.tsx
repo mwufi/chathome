@@ -21,7 +21,7 @@ export default async function ChatRoomPage({
   params: { roomId: string };
 }) {
   // fetch initial data for server rendering
-  const url = `${PARTYKIT_URL}/parties/${party}/${params.roomId}`;
+  const url = `${PARTYKIT_URL}/parties/chatroom/${params.roomId}`;
   const res = await fetch(url, { next: { revalidate: 0 } });
   const room = res.status === 404 ? null : await res.json();
 

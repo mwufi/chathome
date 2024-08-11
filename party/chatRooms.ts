@@ -12,7 +12,6 @@ export type RoomInfoUpdateRequest = {
   id: string;
   connections: number;
   action: "enter" | "leave";
-  user?: User;
 };
 
 /** Chat room notifies us when it's deleted  */
@@ -100,25 +99,25 @@ export default class ChatRoomsServer implements Party.Server {
 
     info.connections = update.connections;
 
-    const user = update.user;
-    if (user) {
-      if (update.action === "enter") {
-        // bump user to the top of the list on entry
-        info.users = info.users.filter((u) => u.username !== user.username);
-        info.users.unshift({
-          username: user.username,
-          image: user.image,
-          joinedAt: new Date().toISOString(),
-          present: true,
-        });
-      } else {
-        info.users = info.users.map((u) =>
-          u.username === user.username
-            ? { ...u, present: false, leftAt: new Date().toISOString() }
-            : u
-        );
-      }
-    }
+    // const user = update.user;
+    // if (user) {
+    //   if (update.action === "enter") {
+    //     // bump user to the top of the list on entry
+    //     info.users = info.users.filter((u) => u.username !== user.username);
+    //     info.users.unshift({
+    //       username: user.username,
+    //       image: user.image,
+    //       joinedAt: new Date().toISOString(),
+    //       present: true,
+    //     });
+    //   } else {
+    //     info.users = info.users.map((u) =>
+    //       u.username === user.username
+    //         ? { ...u, present: false, leftAt: new Date().toISOString() }
+    //         : u
+    //     );
+    //   }
+    // }
 
     await this.party.storage.put(update.id, info);
     return this.getActiveRooms();

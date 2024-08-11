@@ -1,14 +1,31 @@
 import type * as Party from "partykit/server";
 import { onConnect, type YPartyKitOptions } from "y-partykit";
 import { notFound, ok, json } from "./utils/response";
+import { SINGLETON_ROOM_ID } from "./chatRooms";
 
 export default class EditorServer implements Party.Server {
   yjsOptions: YPartyKitOptions = {};
 
   constructor(public party: Party.Party) { }
 
+  /** Send room presence to the room listing party */
+  async updateRoomList(action: "enter" | "leave") {
+    console.log("well, this is it!", action)
+
+    return this.party.context.parties.chatrooms.get(SINGLETON_ROOM_ID).fetch({
+      method: "POST",
+      body: JSON.stringify({
+        id: this.party.id,
+        connections: [...this.party.getConnections()].length,
+        action,
+      }),
+    });
+  }
+
   async onConnect(conn: Party.Connection) {
     await this.party.storage.put("title", this.party.id);
+    this.updateRoomList("enter");
+
     return onConnect(conn, this.party, {
       // experimental: persists the document to partykit's room storage
       persist: { mode: "snapshot" }

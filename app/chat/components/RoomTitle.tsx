@@ -72,8 +72,6 @@ const RoomTitle: React.FC<RoomTitleProps> = ({ roomId, className }) => {
     };
 
     const sharedStyles = {
-        fontSize: '2rem',
-        fontWeight: 'bold',
         width: '100%',
     };
 

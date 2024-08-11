@@ -6,9 +6,28 @@
 
 .ql-editor {
     font-family: "Merriweather", serif;
-    font-size: 1.1rem;
+    font-size: 20px;
+    padding: 0 !important;
+    /* border-left: 1px solid #ccc; */
+    /* background-color: #f5f5f5; */
+}
+.ql-editor::before {
+    left: 0 !important;
+}
+
+.ql-editor:focus {
+    background-color: #fff;
+    /* border-left: 1px solid white; */
+}
+
+.ql-toolbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
 }
 
 .ql-container {
     overflow: visible !important;
+    border: none !important;
 }

@@ -24,7 +24,7 @@ export default function Editor({
     room: string;
     userColor: string;
 }) {
-    const [text, setText] = useState("");
+    const [text, setText] = useState("<h1>Hello</h1>");
     const quill = useRef<ReactQuill>(null);
 
     const provider = useYProvider({
@@ -53,7 +53,7 @@ export default function Editor({
         <div className={styles.editor}>
             <ReactQuill
                 ref={quill}
-                theme="bubble"
+                theme="snow"
                 className={styles.quill}
                 placeholder="Compose an epic..."
                 value={text}

@@ -39,7 +39,7 @@ export default async function ChatRoomPage({
       {room ? (
         <>
           <div className="w-full rounded-xl max-w-[70ch] mx-auto text-lg font-serif bg-white p-6">
-            <RoomTitle roomId={params.roomId} className="text-pink-400 mb-4" />
+            <RoomTitle roomId={params.roomId} className="text-pink-400 text-6xl mb-10" />
             <Editor
               host={PARTYKIT_HOST}
               party={'editor'}

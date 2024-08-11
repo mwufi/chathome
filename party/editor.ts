@@ -23,7 +23,12 @@ export default class EditorServer implements Party.Server {
   }
 
   async onConnect(conn: Party.Connection) {
-    await this.party.storage.put("title", this.party.id);
+    // Check if the title exists, if not, set it to the party id
+    const existingTitle = await this.party.storage.get("title");
+    if (!existingTitle) {
+      await this.party.storage.put("title", this.party.id);
+    }
+    
     this.updateRoomList("enter");
 
     return onConnect(conn, this.party, {

@@ -47,7 +47,7 @@ export default async function ChatRoomPage({
               room={params.roomId}
             />
           </div>
-
+{/* 
           <CollapsibleChat>
             <div className="w-full flex flex-row justify-between items-start pb-6">
               <PresenceBar roomId={params.roomId} />
@@ -59,7 +59,7 @@ export default async function ChatRoomPage({
               room={params.roomId}
               messages={room.messages ?? []}
             />
-          </CollapsibleChat>
+          </CollapsibleChat> */}
 
         </>
       ) : (
